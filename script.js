@@ -5,3 +5,10 @@ const map = new mapboxgl.Map({
   center: [-122.2748, 37.8725], // starting position [lng, lat]. Note that lat must be set between -90 and 90
   zoom: 9 // starting zoom,
     });
+
+map.on('load', function() {
+  map.addSource('points-data', {
+    type: 'geojson',
+    data: 'https://raw.githubusercontent.com/ZhexinTong/183GeoData/refs/heads/main/data/183data.geojson'
+  });
+});
