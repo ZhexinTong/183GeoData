@@ -34,7 +34,7 @@ map.on('load', function () {
     //Create popup content using the actual data
     const popupContent = `
         <div>
-            <h3>${properties["original_*Landmark*"]}</h3>
+            <h3>${properties["original_*Landmark*"].replace(/\*/g, "")}</h3>
             <p><strong>Address:</strong> ${properties["original_*Address*"]}</p>
             <p><strong>Architect & Date:</strong> ${properties["original_*Architect & Date*"]}</p>
             <p><strong>Designated:</strong> ${properties["original_*  Designated  *"]}</p>
@@ -47,6 +47,16 @@ map.on('load', function () {
             .setLngLat(coordinates)
             .setHTML(popupContent)
             .addTo(map);
-
   });
+  
+  // Change cursor to pointer when hovering over points
+  map.on('mouseenter', 'points-layer', () => {
+    map.getCanvas().style.cursor = 'pointer';
+  });
+
+  // Change cursor back when leaving points
+  map.on('mouseleave', 'points-layer', () => {
+    map.getCanvas().style.cursor = '';
+  });
+
 });
