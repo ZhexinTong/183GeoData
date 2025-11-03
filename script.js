@@ -33,14 +33,20 @@ map.on('load', function () {
 
     //Create popup content using the actual data
     const popupContent = `
-            <div>
-                <h3>${properties["original_*Landmark*"]}</h3>
-                <p><strong>Address:</strong> ${properties["original_*Address*"]}</p>
-                <p><strong>Architect & Date:</strong> ${properties["original_*Architect & Date*"]}</p>
-                <p><strong>Designated:</strong> ${properties["original_*  Designated  *"]}</p>
-                ${properties.Link ? `<p><a href="${properties.Link}" target="_blank">More Information</a></p>` : ''}
-                ${properties.Notes ? `<p><strong>Notes:</strong> ${properties["original_*Notes*"]}</p>` : ''}
-            </div>
-        `;
+        <div>
+            <h3>${properties["original_*Landmark*"]}</h3>
+            <p><strong>Address:</strong> ${properties["original_*Address*"]}</p>
+            <p><strong>Architect & Date:</strong> ${properties["original_*Architect & Date*"]}</p>
+            <p><strong>Designated:</strong> ${properties["original_*  Designated  *"]}</p>
+            ${properties.Link ? `<p><a href="${properties.Link}" target="_blank">More Information</a></p>` : ''}
+            ${properties.Notes ? `<p><strong>Notes:</strong> ${properties["original_*Notes*"]}</p>` : ''}
+        </div>
+    `;
+    
+    new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(popupContent)
+            .addTo(map);
+
   });
 });
